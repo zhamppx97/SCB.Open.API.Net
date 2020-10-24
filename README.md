@@ -8,6 +8,13 @@ https://developer.scb/#/preregistration
 https://developer.scb/#/documents/documentation/basics/getting-started.html
 
 # Usage
+
+NuGet Package
+
+  ```
+  PM> Install-Package SCB.Open.API.Net -Version 0.0.0
+  ```
+
 Sample
 
   ```
