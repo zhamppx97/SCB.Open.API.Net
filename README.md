@@ -10,6 +10,7 @@ https://developer.scb/#/documents/documentation/basics/getting-started.html
 # Usage
 
 NuGet Package
+https://www.nuget.org/packages/SCB.Open.API.Net/
 
   ```
   PM> Install-Package SCB.Open.API.Net -Version 0.0.0
