@@ -1,5 +1,6 @@
 ﻿using SCB.Open.API.Net.Authentication.Models;
 using SCB.Open.API.Net.Authentication.Services;
+using System.Threading.Tasks;
 
 namespace SCB.Open.API.Net
 {
@@ -30,9 +31,18 @@ namespace SCB.Open.API.Net
             /// </summary>
             /// <param name="authorizeRequestHeader">Request Header</param>
             /// <returns>Authorize</returns>
-            public string GetAuthorize(AuthorizeRequestHeader authorizeRequestHeader)
+            public AuthorizeResponseData GetAuthorize(AuthorizeRequestHeader authorizeRequestHeader)
             {
                 return _oauthService.GetAuthorize(authorizeRequestHeader);
+            }
+            /// <summary>
+            /// This endpoint authorize whether the application is valid, allow the login to proceed by returning login redirection URL.
+            /// </summary>
+            /// <param name="authorizeRequestHeader">Request Header</param>
+            /// <returns>Authorize</returns>
+            public async Task<AuthorizeResponseData> GetAuthorizeAsync(AuthorizeRequestHeader authorizeRequestHeader)
+            {
+                return await _oauthService.GetAuthorizeAsync(authorizeRequestHeader);
             }
             /// <summary>
             /// This endpoint generates the access token, which is used to access any consented resource of the user on SCB Developer platform.
@@ -41,9 +51,20 @@ namespace SCB.Open.API.Net
             /// <param name="tokenRequestHeader">Request Header</param>
             /// <param name="tokenRequestBody">Request Body</param>
             /// <returns>Access token</returns>
-            public string GetToken(TokenRequestHeader tokenRequestHeader, TokenRequestBody tokenRequestBody)
+            public TokenResponseData GetToken(TokenRequestHeader tokenRequestHeader, TokenRequestBody tokenRequestBody)
             {
                 return _oauthService.GetToken(tokenRequestHeader, tokenRequestBody);
+            }
+            /// <summary>
+            /// This endpoint generates the access token, which is used to access any consented resource of the user on SCB Developer platform.
+            /// Required: TokenRequestHeader, TokenRequestBody 
+            /// </summary>
+            /// <param name="tokenRequestHeader">Request Header</param>
+            /// <param name="tokenRequestBody">Request Body</param>
+            /// <returns>Access token</returns>
+            public async Task<TokenResponseData> GetTokenAsync(TokenRequestHeader tokenRequestHeader, TokenRequestBody tokenRequestBody)
+            {
+                return await _oauthService.GetTokenAsync(tokenRequestHeader, tokenRequestBody);
             }
             /// <summary>
             /// This endpoint refresh the expired access token, generating a new set of the access token with the same access right as the previously generated prior.
@@ -52,9 +73,20 @@ namespace SCB.Open.API.Net
             /// <param name="tokenRequestHeader">Request Header</param>
             /// <param name="tokenRefreshRequestBody">Request Body</param>
             /// <returns>A new set of the access token</returns>
-            public string GetTokenRefresh(TokenRequestHeader tokenRequestHeader, TokenRefreshRequestBody tokenRefreshRequestBody)
+            public TokenRefreshResponseData GetTokenRefresh(TokenRequestHeader tokenRequestHeader, TokenRefreshRequestBody tokenRefreshRequestBody)
             {
                 return _oauthService.GetTokenRefresh(tokenRequestHeader, tokenRefreshRequestBody);
+            }
+            /// <summary>
+            /// This endpoint refresh the expired access token, generating a new set of the access token with the same access right as the previously generated prior.
+            /// Required: TokenRequestHeader, TokenRefreshRequestBody
+            /// </summary>
+            /// <param name="tokenRequestHeader">Request Header</param>
+            /// <param name="tokenRefreshRequestBody">Request Body</param>
+            /// <returns>A new set of the access token</returns>
+            public async Task<TokenRefreshResponseData> GetTokenRefreshAsync(TokenRequestHeader tokenRequestHeader, TokenRefreshRequestBody tokenRefreshRequestBody)
+            {
+                return await _oauthService.GetTokenRefreshAsync(tokenRequestHeader, tokenRefreshRequestBody);
             }
         }
         #endregion
