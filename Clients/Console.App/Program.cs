@@ -15,6 +15,10 @@ namespace ConsoleApp
             Authorize();
             Token();
             TokenRefresh();
+
+            ProfileAsync().Wait();
+
+            Profile();
         }
 
         static void Authorize()
@@ -60,7 +64,7 @@ namespace ConsoleApp
         static void Token()
         {
             SCBOpenAPI.Authentication auth = new SCBOpenAPI.Authentication();
-            
+
             auth.CreateTokenRequestHeader.ContentType = "application/json";
             auth.CreateTokenRequestHeader.ResourceOwnerId = "<Your API Key>";
             auth.CreateTokenRequestHeader.RequestUId = Guid.NewGuid().ToString();
@@ -127,6 +131,32 @@ namespace ConsoleApp
 
             var resultTokenRefresh = await auth.GetTokenRefreshAsync(auth.CreateTokenRequestHeader, auth.CreateTokenRefreshRequestBody);
             Console.WriteLine(resultTokenRefresh.jsonString);
+        }
+
+        static void Profile()
+        {
+            SCBOpenAPI.CustomerInfo customerInfo = new SCBOpenAPI.CustomerInfo();
+
+            customerInfo.CreateCustomerInfoRequestHeader.Authorization = "<Your Access Token>";
+            customerInfo.CreateCustomerInfoRequestHeader.ResourceOwnerId = "<The value of resourceOwnerId from the response header of /v1/oauth/token>";
+            customerInfo.CreateCustomerInfoRequestHeader.RequestUId = Guid.NewGuid().ToString();
+            customerInfo.CreateCustomerInfoRequestHeader.AcceptLanguage = "EN";
+
+            var resultProfile = customerInfo.GetProfile(customerInfo.CreateCustomerInfoRequestHeader);
+            Console.WriteLine(resultProfile.jsonString);
+        }
+
+        static async Task ProfileAsync()
+        {
+            SCBOpenAPI.CustomerInfo customerInfo = new SCBOpenAPI.CustomerInfo();
+
+            customerInfo.CreateCustomerInfoRequestHeader.Authorization = "<Your Access Token>";
+            customerInfo.CreateCustomerInfoRequestHeader.ResourceOwnerId = "<The value of resourceOwnerId from the response header of /v1/oauth/token>";
+            customerInfo.CreateCustomerInfoRequestHeader.RequestUId = Guid.NewGuid().ToString();
+            customerInfo.CreateCustomerInfoRequestHeader.AcceptLanguage = "EN";
+
+            var resultProfile = await customerInfo.GetProfileAsync(customerInfo.CreateCustomerInfoRequestHeader);
+            Console.WriteLine(resultProfile.jsonString);
         }
     }
 }
