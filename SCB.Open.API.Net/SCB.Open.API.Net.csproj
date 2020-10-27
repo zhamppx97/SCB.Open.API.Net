@@ -20,7 +20,6 @@ https://developer.scb/#/home</Description>
 
   <ItemGroup>
     <Folder Include="Loan.Origination\" />
-    <Folder Include="Customer.Information\" />
     <Folder Include="Slip.Verification\" />
     <Folder Include="QR.Code.Payment\" />
     <Folder Include="SCB.Payment.Gateway\" />

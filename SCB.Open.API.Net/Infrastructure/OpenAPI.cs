@@ -20,5 +20,13 @@ namespace SCB.Open.API.Net.Infrastructure
                 return $"{baseUri}/v1/oauth/token/refresh";
             }
         }
+
+        public static class CustomerInfo
+        {
+            public static string Profile(string baseUri)
+            {
+                return $"{baseUri}/​v2/​customers/​profile";
+            }
+        }
     }
 }

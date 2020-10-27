@@ -1,5 +1,7 @@
 ﻿using SCB.Open.API.Net.Authentication.Models;
 using SCB.Open.API.Net.Authentication.Services;
+using SCB.Open.API.Net.Customer.Information.Models;
+using SCB.Open.API.Net.Customer.Information.Services;
 using System.Threading.Tasks;
 
 namespace SCB.Open.API.Net
@@ -87,6 +89,35 @@ namespace SCB.Open.API.Net
             public async Task<TokenRefreshResponseData> GetTokenRefreshAsync(TokenRequestHeader tokenRequestHeader, TokenRefreshRequestBody tokenRefreshRequestBody)
             {
                 return await _oauthService.GetTokenRefreshAsync(tokenRequestHeader, tokenRefreshRequestBody);
+            }
+        }
+        #endregion
+
+        #region Customer Information
+        public class CustomerInfo
+        {
+            private readonly CustomerInfoService _customerInfoService = new CustomerInfoService();
+            /// <summary>
+            /// Create your request header customer info.
+            /// </summary>
+            public CustomerInfoRequestHeader CreateCustomerInfoRequestHeader = new CustomerInfoRequestHeader();
+            /// <summary>
+            /// This endpoint provides the consented user information to the partner application.
+            /// </summary>
+            /// <param name="customerInfoRequestHeader">Request Header</param>
+            /// <returns>User information to the partner application</returns>
+            public CustomerInfoResponseData GetProfile(CustomerInfoRequestHeader customerInfoRequestHeader)
+            {
+                return _customerInfoService.GetProfile(customerInfoRequestHeader);
+            }
+            /// <summary>
+            /// This endpoint provides the consented user information to the partner application.
+            /// </summary>
+            /// <param name="customerInfoRequestHeader">Request Header</param>
+            /// <returns>User information to the partner application</returns>
+            public async Task<CustomerInfoResponseData> GetProfileAsync(CustomerInfoRequestHeader customerInfoRequestHeader)
+            {
+                return await _customerInfoService.GetProfileAsync(customerInfoRequestHeader);
             }
         }
         #endregion
