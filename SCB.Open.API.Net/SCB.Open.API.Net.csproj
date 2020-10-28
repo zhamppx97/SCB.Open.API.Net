@@ -19,9 +19,14 @@ https://developer.scb/#/home</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="QR.Code.Payment\**" />
+    <EmbeddedResource Remove="QR.Code.Payment\**" />
+    <None Remove="QR.Code.Payment\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Loan.Origination\" />
     <Folder Include="Slip.Verification\" />
-    <Folder Include="QR.Code.Payment\" />
     <Folder Include="SCB.Payment.Gateway\" />
   </ItemGroup>
 

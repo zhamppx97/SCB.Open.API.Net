@@ -2,6 +2,8 @@
 using SCB.Open.API.Net.Authentication.Services;
 using SCB.Open.API.Net.Customer.Information.Models;
 using SCB.Open.API.Net.Customer.Information.Services;
+using SCB.Open.API.Net.Payments.SCBEasyAppPayment.Models;
+using SCB.Open.API.Net.Payments.SCBEasyAppPayment.Services;
 using System.Threading.Tasks;
 
 namespace SCB.Open.API.Net
@@ -93,7 +95,45 @@ namespace SCB.Open.API.Net
         }
         #endregion
 
-        #region Customer Information
+        #region Payments services
+        public class Payments
+        {
+            public class SCBEasyAppPayment
+            {
+                private readonly SCBEasyAppPaymentService _scbEasyAppPaymentService = new SCBEasyAppPaymentService();
+                /// <summary>
+                /// Create your request header deeplink transactions.
+                /// </summary>
+                public DeepLinkTransactionsRequestHeader CreateDeepLinkTransactionsRequestHeader = new DeepLinkTransactionsRequestHeader();
+                /// <summary>
+                /// Create your request body deeplink transactions.
+                /// </summary>
+                public DeepLinkTransactionsRequestBody CreateDeepLinkTransactionsRequestBody = new DeepLinkTransactionsRequestBody();
+                /// <summary>
+                /// This endpoint creates a transaction record with deeplink URL. Partners who would like to initiate a purchase process to be completed via deeplink integration with partner channel for SCB customer must first log the details of this transaction.
+                /// </summary>
+                /// <param name="deepLinkTransactionsRequestHeader"></param>
+                /// <param name="deepLinkTransactionsRequestBody"></param>
+                /// <returns>Creates a transaction record with deeplink URL</returns>
+                public DeepLinkTransactionsResponseData GetDeepLinkTransactions(DeepLinkTransactionsRequestHeader deepLinkTransactionsRequestHeader, DeepLinkTransactionsRequestBody deepLinkTransactionsRequestBody)
+                {
+                    return _scbEasyAppPaymentService.GetDeepLinkTransactions(deepLinkTransactionsRequestHeader, deepLinkTransactionsRequestBody);
+                }
+                /// <summary>
+                /// This endpoint creates a transaction record with deeplink URL. Partners who would like to initiate a purchase process to be completed via deeplink integration with partner channel for SCB customer must first log the details of this transaction.
+                /// </summary>
+                /// <param name="deepLinkTransactionsRequestHeader"></param>
+                /// <param name="deepLinkTransactionsRequestBody"></param>
+                /// <returns>Creates a transaction record with deeplink URL</returns>
+                public async Task<DeepLinkTransactionsResponseData> GetDeepLinkTransactionsAsync(DeepLinkTransactionsRequestHeader deepLinkTransactionsRequestHeader, DeepLinkTransactionsRequestBody deepLinkTransactionsRequestBody)
+                {
+                    return await _scbEasyAppPaymentService.GetDeepLinkTransactionsAsync(deepLinkTransactionsRequestHeader, deepLinkTransactionsRequestBody);
+                }
+            }
+        }
+        #endregion
+
+        #region Customer Information services
         public class CustomerInfo
         {
             private readonly CustomerInfoService _customerInfoService = new CustomerInfoService();
