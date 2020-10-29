@@ -13,7 +13,7 @@ NuGet Package
 https://www.nuget.org/packages/SCB.Open.API.Net/
 
   ```
-  PM> Install-Package SCB.Open.API.Net -Version 0.1.0
+  PM> Install-Package SCB.Open.API.Net -Version 0.2.0
   ```
 
 Sample
@@ -38,6 +38,4 @@ Sample
   
 # Upcoming
 
-- Payments
-- Customer Information
 - Loan Origination

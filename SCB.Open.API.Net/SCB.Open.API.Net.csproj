@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>zhamppx97</Authors>
     <Copyright>2020</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -11,8 +11,7 @@ About SCB Open API
 https://developer.scb/#/home</Description>
     <PackageTags>The Siam Commercial Bank SCB Thailand</PackageTags>
     <PackageReleaseNotes>Preview
-- Add async call
-- Rewrite response values new</PackageReleaseNotes>
+- Add Payments, Customer Information</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/zhamppx97/SCB.Open.API.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/zhamppx97/SCB.Open.API.Net</RepositoryUrl>
