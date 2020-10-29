@@ -34,6 +34,30 @@ Sample
   auth.CreateAuthorizeRequestHeader.CodeChallenge = null;
   
   var resultAuthorize = auth.GetAuthorize(auth.CreateAuthorizeRequestHeader);
+  
+  Console.WriteLine(resultAuthorize.status.code);
+  // Display
+  // 1000
+  
+  Console.WriteLine(resultAuthorize.status.description);
+  // Display
+  // Success
+  
+  Console.WriteLine(resultAuthorize.data.callbackUrl);
+  // Display
+  // scbeasysim://login/a2f816bf-5e33-4a7b-a3fd-3babd1e95428
+  
+  Console.WriteLine(resultAuthorize.jsonString);
+  // Display
+  // {
+  //   "status": {
+  //     "code": 1000,
+  //     "description": "Success"
+  //   },
+  //   "data": {
+  //     "callbackUrl": "scbeasysim://login/a2f816bf-5e33-4a7b-a3fd-3babd1e95428"
+  //   }
+  // }
   ```
   
 # Upcoming
