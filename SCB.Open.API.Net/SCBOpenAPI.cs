@@ -2,6 +2,8 @@
 using SCB.Open.API.Net.Authentication.Services;
 using SCB.Open.API.Net.Customer.Information.Models;
 using SCB.Open.API.Net.Customer.Information.Services;
+using SCB.Open.API.Net.Payments.BScanC.Models;
+using SCB.Open.API.Net.Payments.BScanC.Services;
 using SCB.Open.API.Net.Payments.SCBEasyAppPayment.Models;
 using SCB.Open.API.Net.Payments.SCBEasyAppPayment.Services;
 using System.Threading.Tasks;
@@ -152,6 +154,39 @@ namespace SCB.Open.API.Net
                 public async Task<TransactionsResponseData> GetTransactionsAsync(TransactionsRequestHeader transactionsRequestHeader, string transactionId)
                 {
                     return await _scbEasyAppPaymentService.GetTransactionsAsync(transactionsRequestHeader, transactionId);
+                }
+            }
+
+            public class BScanC
+            {
+                private readonly BScanCService _bScanCService = new BScanCService();
+                /// <summary>
+                /// Create your request header mercharnt rtp confirm.
+                /// </summary>
+                public MerchantRtpConfirmRequestHeader CreateMerchantRtpConfirmRequestHeader = new MerchantRtpConfirmRequestHeader();
+                /// <summary>
+                /// Create your request body merchant rtp confirm.
+                /// </summary>
+                public MerchantRtpConfirmRequestBody CreateMerchantRtpConfirmRequestBody = new MerchantRtpConfirmRequestBody();
+                /// <summary>
+                /// This endpoint support the B Scan C Payment API.
+                /// </summary>
+                /// <param name="merchantRtpConfirmRequestHeader">Request Header</param>
+                /// <param name="merchantRtpConfirmRequestBody">Request Body</param>
+                /// <returns>Merchant rtp confirm details</returns>
+                public MerchantRtpConfirmResponseData GetMerchantRtpConfirm(MerchantRtpConfirmRequestHeader merchantRtpConfirmRequestHeader, MerchantRtpConfirmRequestBody merchantRtpConfirmRequestBody)
+                {
+                    return _bScanCService.GetMerchantRtpConfirm(merchantRtpConfirmRequestHeader, merchantRtpConfirmRequestBody);
+                }
+                /// <summary>
+                /// This endpoint support the B Scan C Payment API.
+                /// </summary>
+                /// <param name="merchantRtpConfirmRequestHeader">Request Header</param>
+                /// <param name="merchantRtpConfirmRequestBody">Request Body</param>
+                /// <returns>Merchant rtp confirm details</returns>
+                public async Task<MerchantRtpConfirmResponseData> GetMerchantRtpConfirmAsync(MerchantRtpConfirmRequestHeader merchantRtpConfirmRequestHeader, MerchantRtpConfirmRequestBody merchantRtpConfirmRequestBody)
+                {
+                    return await _bScanCService.GetMerchantRtpConfirmAsync(merchantRtpConfirmRequestHeader, merchantRtpConfirmRequestBody);
                 }
             }
         }
