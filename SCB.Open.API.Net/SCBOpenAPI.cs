@@ -169,6 +169,14 @@ namespace SCB.Open.API.Net
                 /// </summary>
                 public MerchantRtpConfirmRequestBody CreateMerchantRtpConfirmRequestBody = new MerchantRtpConfirmRequestBody();
                 /// <summary>
+                /// Create your request header mercharnt rtp refund.
+                /// </summary>
+                public MerchantRtpRefundRequestHeader CreateMerchantRtpRefundRequestHeader = new MerchantRtpRefundRequestHeader();
+                /// <summary>
+                /// Create your request body merchant rtp refund.
+                /// </summary>
+                public MerchantRtpRefundRequestBody CreateMerchantRtpRefundRequestBody = new MerchantRtpRefundRequestBody();
+                /// <summary>
                 /// This endpoint support the B Scan C Payment API.
                 /// </summary>
                 /// <param name="merchantRtpConfirmRequestHeader">Request Header</param>
@@ -187,6 +195,26 @@ namespace SCB.Open.API.Net
                 public async Task<MerchantRtpConfirmResponseData> GetMerchantRtpConfirmAsync(MerchantRtpConfirmRequestHeader merchantRtpConfirmRequestHeader, MerchantRtpConfirmRequestBody merchantRtpConfirmRequestBody)
                 {
                     return await _bScanCService.GetMerchantRtpConfirmAsync(merchantRtpConfirmRequestHeader, merchantRtpConfirmRequestBody);
+                }
+                /// <summary>
+                /// This endpoint support the B Scan C Refund API The refund API can be use within 23:00 of original transaction date and only full amount refund is supported.
+                /// </summary>
+                /// <param name="merchantRtpRefundRequestHeader">Request Header</param>
+                /// <param name="merchantRtpRefundRequestBody">Request Body</param>
+                /// <returns>Merchant rtp refund details</returns>
+                public MerchantRtpRefundResponseData GetMerchantRtpRefund(MerchantRtpRefundRequestHeader merchantRtpRefundRequestHeader, MerchantRtpRefundRequestBody merchantRtpRefundRequestBody)
+                {
+                    return _bScanCService.GetMerchantRtpRefund(merchantRtpRefundRequestHeader, merchantRtpRefundRequestBody);
+                }
+                /// <summary>
+                /// This endpoint support the B Scan C Refund API The refund API can be use within 23:00 of original transaction date and only full amount refund is supported.
+                /// </summary>
+                /// <param name="merchantRtpRefundRequestHeader">Request Header</param>
+                /// <param name="merchantRtpRefundRequestBody">Request Body</param>
+                /// <returns>Merchant rtp refund details</returns>
+                public async Task<MerchantRtpRefundResponseData> GetMerchantRtpRefundAsync(MerchantRtpRefundRequestHeader merchantRtpRefundRequestHeader, MerchantRtpRefundRequestBody merchantRtpRefundRequestBody)
+                {
+                    return await _bScanCService.GetMerchantRtpRefundAsync(merchantRtpRefundRequestHeader, merchantRtpRefundRequestBody);
                 }
             }
         }

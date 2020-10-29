@@ -60,5 +60,49 @@ namespace SCB.Open.API.Net.Payments.BScanC.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public MerchantRtpRefundResponseData GetMerchantRtpRefund(MerchantRtpRefundRequestHeader merchantRtpRefundRequestHeader, MerchantRtpRefundRequestBody merchantRtpRefundRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.BScanC.Refund(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", merchantRtpRefundRequestHeader.ContentType);
+            request.AddHeader("authorization", merchantRtpRefundRequestHeader.Authorization);
+            request.AddHeader("resourceOwnerId", merchantRtpRefundRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", merchantRtpRefundRequestHeader.RequestUId);
+            request.AddHeader("accept-language", merchantRtpRefundRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(merchantRtpRefundRequestBody));
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<MerchantRtpRefundResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<MerchantRtpRefundResponseData> GetMerchantRtpRefundAsync(MerchantRtpRefundRequestHeader merchantRtpRefundRequestHeader, MerchantRtpRefundRequestBody merchantRtpRefundRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.BScanC.Refund(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", merchantRtpRefundRequestHeader.ContentType);
+            request.AddHeader("authorization", merchantRtpRefundRequestHeader.Authorization);
+            request.AddHeader("resourceOwnerId", merchantRtpRefundRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", merchantRtpRefundRequestHeader.RequestUId);
+            request.AddHeader("accept-language", merchantRtpRefundRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(merchantRtpRefundRequestBody));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<MerchantRtpRefundResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }

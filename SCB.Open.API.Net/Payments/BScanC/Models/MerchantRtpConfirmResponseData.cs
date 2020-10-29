@@ -3,18 +3,18 @@ namespace SCB.Open.API.Net.Payments.BScanC.Models
 {
     public class MerchantRtpConfirmResponseData
     {
-        public Status status { get; set; }
-        public Data data { get; set; }
+        public MerchantRtpConfirmStatus status { get; set; }
+        public MerchantRtpConfirmData data { get; set; }
         public object jsonString { get; set; }
     }
 
-    public class Status
+    public class MerchantRtpConfirmStatus
     {
         public int code { get; set; }
         public string description { get; set; }
     }
 
-    public class Data
+    public class MerchantRtpConfirmData
     {
         public Originaltransaction originalTransaction { get; set; }
         public string partnerTransactionId { get; set; }
