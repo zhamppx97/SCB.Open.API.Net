@@ -62,5 +62,45 @@ namespace SCB.Open.API.Net.Payments.SCBEasyAppPayment.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public TransactionsResponseData GetTransactions(TransactionsRequestHeader transactionsRequestHeader, string transactionId)
+        {
+            var client = new RestClient(OpenAPI.Payments.SCBEasyAppPayment.Transactions(_remoteServiceBaseUrl, transactionId))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("authorization", transactionsRequestHeader.Authorization);
+            request.AddHeader("accept-language", transactionsRequestHeader.AcceptLanguage);
+            request.AddHeader("resourceOwnerId", transactionsRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", transactionsRequestHeader.RequestUId);
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<TransactionsResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<TransactionsResponseData> GetTransactionsAsync(TransactionsRequestHeader transactionsRequestHeader, string transactionId)
+        {
+            var client = new RestClient(OpenAPI.Payments.SCBEasyAppPayment.Transactions(_remoteServiceBaseUrl, transactionId))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("authorization", transactionsRequestHeader.Authorization);
+            request.AddHeader("accept-language", transactionsRequestHeader.AcceptLanguage);
+            request.AddHeader("resourceOwnerId", transactionsRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", transactionsRequestHeader.RequestUId);
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<TransactionsResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }

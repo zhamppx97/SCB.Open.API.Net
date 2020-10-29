@@ -110,10 +110,14 @@ namespace SCB.Open.API.Net
                 /// </summary>
                 public DeepLinkTransactionsRequestBody CreateDeepLinkTransactionsRequestBody = new DeepLinkTransactionsRequestBody();
                 /// <summary>
+                /// Create your request header transactions.
+                /// </summary>
+                public TransactionsRequestHeader CreateTransactionsRequestHeader = new TransactionsRequestHeader();
+                /// <summary>
                 /// This endpoint creates a transaction record with deeplink URL. Partners who would like to initiate a purchase process to be completed via deeplink integration with partner channel for SCB customer must first log the details of this transaction.
                 /// </summary>
-                /// <param name="deepLinkTransactionsRequestHeader"></param>
-                /// <param name="deepLinkTransactionsRequestBody"></param>
+                /// <param name="deepLinkTransactionsRequestHeader">Request Header</param>
+                /// <param name="deepLinkTransactionsRequestBody">Request Body</param>
                 /// <returns>Creates a transaction record with deeplink URL</returns>
                 public DeepLinkTransactionsResponseData GetDeepLinkTransactions(DeepLinkTransactionsRequestHeader deepLinkTransactionsRequestHeader, DeepLinkTransactionsRequestBody deepLinkTransactionsRequestBody)
                 {
@@ -122,12 +126,32 @@ namespace SCB.Open.API.Net
                 /// <summary>
                 /// This endpoint creates a transaction record with deeplink URL. Partners who would like to initiate a purchase process to be completed via deeplink integration with partner channel for SCB customer must first log the details of this transaction.
                 /// </summary>
-                /// <param name="deepLinkTransactionsRequestHeader"></param>
-                /// <param name="deepLinkTransactionsRequestBody"></param>
+                /// <param name="deepLinkTransactionsRequestHeader">Request Header</param>
+                /// <param name="deepLinkTransactionsRequestBody">Request Body</param>
                 /// <returns>Creates a transaction record with deeplink URL</returns>
                 public async Task<DeepLinkTransactionsResponseData> GetDeepLinkTransactionsAsync(DeepLinkTransactionsRequestHeader deepLinkTransactionsRequestHeader, DeepLinkTransactionsRequestBody deepLinkTransactionsRequestBody)
                 {
                     return await _scbEasyAppPaymentService.GetDeepLinkTransactionsAsync(deepLinkTransactionsRequestHeader, deepLinkTransactionsRequestBody);
+                }
+                /// <summary>
+                /// This endpoint retrieves the details of a specific transaction given a transaction ID
+                /// </summary>
+                /// <param name="transactionsRequestHeader">Request Header</param>
+                /// <param name="transactionId">ID from the transaction which was created in v3/deeplink/transactions</param>
+                /// <returns>Transaction details</returns>
+                public TransactionsResponseData GetTransactions(TransactionsRequestHeader transactionsRequestHeader, string transactionId)
+                {
+                    return _scbEasyAppPaymentService.GetTransactions(transactionsRequestHeader, transactionId);
+                }
+                /// <summary>
+                /// This endpoint retrieves the details of a specific transaction given a transaction ID
+                /// </summary>
+                /// <param name="transactionsRequestHeader">Request Header</param>
+                /// <param name="transactionId">ID from the transaction which was created in v3/deeplink/transactions</param>
+                /// <returns>Transaction details</returns>
+                public async Task<TransactionsResponseData> GetTransactionsAsync(TransactionsRequestHeader transactionsRequestHeader, string transactionId)
+                {
+                    return await _scbEasyAppPaymentService.GetTransactionsAsync(transactionsRequestHeader, transactionId);
                 }
             }
         }

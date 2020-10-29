@@ -7,5 +7,7 @@ namespace SCB.Open.API.Net.Payments.SCBEasyAppPayment.Services
     {
         public DeepLinkTransactionsResponseData GetDeepLinkTransactions(DeepLinkTransactionsRequestHeader deepLinkTransactionsRequestHeader, DeepLinkTransactionsRequestBody deepLinkTransactionsRequestBody);
         public Task<DeepLinkTransactionsResponseData> GetDeepLinkTransactionsAsync(DeepLinkTransactionsRequestHeader deepLinkTransactionsRequestHeader, DeepLinkTransactionsRequestBody deepLinkTransactionsRequestBody);
+        public TransactionsResponseData GetTransactions(TransactionsRequestHeader transactionsRequestHeader, string transactionId);
+        public Task<TransactionsResponseData> GetTransactionsAsync(TransactionsRequestHeader transactionsRequestHeader, string transactionId);
     }
 }

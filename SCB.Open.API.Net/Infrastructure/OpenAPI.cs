@@ -52,9 +52,9 @@ namespace SCB.Open.API.Net.Infrastructure
                 /// </summary>
                 /// <param name="baseUri">Base uri</param>
                 /// <returns>Route API Url</returns>
-                public static string Transactions(string baseUri)
+                public static string Transactions(string baseUri, string transactionId)
                 {
-                    return $"{baseUri}/​v2/​transactions/​";
+                    return $"{baseUri}/​v2/​transactions/{transactionId}​";
                 }
             }
 
