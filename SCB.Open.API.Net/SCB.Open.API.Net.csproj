@@ -25,7 +25,6 @@ https://developer.scb/#/home</Description>
 
   <ItemGroup>
     <Folder Include="Loan.Origination\" />
-    <Folder Include="Payments\EWallets\Services\" />
     <Folder Include="Slip.Verification\" />
     <Folder Include="SCB.Payment.Gateway\" />
   </ItemGroup>

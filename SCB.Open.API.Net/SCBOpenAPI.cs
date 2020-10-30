@@ -4,6 +4,8 @@ using SCB.Open.API.Net.Customer.Information.Models;
 using SCB.Open.API.Net.Customer.Information.Services;
 using SCB.Open.API.Net.Payments.BScanC.Models;
 using SCB.Open.API.Net.Payments.BScanC.Services;
+using SCB.Open.API.Net.Payments.EWallets.Models;
+using SCB.Open.API.Net.Payments.EWallets.Services;
 using SCB.Open.API.Net.Payments.SCBEasyAppPayment.Models;
 using SCB.Open.API.Net.Payments.SCBEasyAppPayment.Services;
 using System.Threading.Tasks;
@@ -215,6 +217,44 @@ namespace SCB.Open.API.Net
                 public async Task<MerchantRtpRefundResponseData> GetMerchantRtpRefundAsync(MerchantRtpRefundRequestHeader merchantRtpRefundRequestHeader, MerchantRtpRefundRequestBody merchantRtpRefundRequestBody)
                 {
                     return await _bScanCService.GetMerchantRtpRefundAsync(merchantRtpRefundRequestHeader, merchantRtpRefundRequestBody);
+                }
+            }
+
+            /// <summary>
+            /// Alipay or WeChatPay
+            /// </summary>
+            public class EWallets
+            {
+                private readonly QRCodeCreateService _qRCodeCreateService = new QRCodeCreateService();
+                /// <summary>
+                /// Create your request header qr code create.
+                /// </summary>
+                public QRCodeCreateRequestHeader CreateQRCodeCreateRequestHeader = new QRCodeCreateRequestHeader();
+                /// <summary>
+                /// Create your request body qr code create.
+                /// </summary>
+                public QRCodeCreateRequestBody CreateQRCodeCreateRequestBody = new QRCodeCreateRequestBody();
+                /// <summary>
+                /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
+                /// Generate Alipay QR code, Generate WeChatPay QR code
+                /// </summary>
+                /// <param name="qRCodeCreateRequestHeader">Request Header</param>
+                /// <param name="qRCodeCreateRequestBody">Request Body</param>
+                /// <returns>QR code generation of Alipay and WeChatPay.</returns>
+                public QRCodeCreateResponseData GetQRCodeCreate(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody)
+                {
+                    return _qRCodeCreateService.GetQRCodeCreate(qRCodeCreateRequestHeader, qRCodeCreateRequestBody);
+                }
+                /// <summary>
+                /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
+                /// Generate Alipay QR code, Generate WeChatPay QR code
+                /// </summary>
+                /// <param name="qRCodeCreateRequestHeader">Request Header</param>
+                /// <param name="qRCodeCreateRequestBody">Request Body</param>
+                /// <returns>QR code generation of Alipay and WeChatPay.</returns>
+                public async Task<QRCodeCreateResponseData> GetQRCodeCreateAsync(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody)
+                {
+                    return await _qRCodeCreateService.GetQRCodeCreateAsync(qRCodeCreateRequestHeader, qRCodeCreateRequestBody);
                 }
             }
         }
