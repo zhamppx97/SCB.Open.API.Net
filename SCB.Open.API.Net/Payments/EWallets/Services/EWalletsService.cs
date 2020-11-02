@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SCB.Open.API.Net.Payments.EWallets.Services
 {
-    public class QRCodeCreateService : IQRCodeCreateService
+    public class EWalletsService : IEWalletsService
     {
         private readonly AppSettings _appSettings = new AppSettings();
         private readonly string _remoteServiceBaseUrl;
 
-        public QRCodeCreateService()
+        public EWalletsService()
         {
             _remoteServiceBaseUrl = $"{_appSettings.BaseApiUrl}";
         }

@@ -225,7 +225,7 @@ namespace SCB.Open.API.Net
             /// </summary>
             public class EWallets
             {
-                private readonly QRCodeCreateService _qRCodeCreateService = new QRCodeCreateService();
+                private readonly EWalletsService _eWalletsService = new EWalletsService();
                 /// <summary>
                 /// Create your request header qr code create.
                 /// </summary>
@@ -243,7 +243,7 @@ namespace SCB.Open.API.Net
                 /// <returns>QR code generation of Alipay and WeChatPay.</returns>
                 public QRCodeCreateResponseData GetQRCodeCreate(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody)
                 {
-                    return _qRCodeCreateService.GetQRCodeCreate(qRCodeCreateRequestHeader, qRCodeCreateRequestBody);
+                    return _eWalletsService.GetQRCodeCreate(qRCodeCreateRequestHeader, qRCodeCreateRequestBody);
                 }
                 /// <summary>
                 /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
@@ -254,7 +254,7 @@ namespace SCB.Open.API.Net
                 /// <returns>QR code generation of Alipay and WeChatPay.</returns>
                 public async Task<QRCodeCreateResponseData> GetQRCodeCreateAsync(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody)
                 {
-                    return await _qRCodeCreateService.GetQRCodeCreateAsync(qRCodeCreateRequestHeader, qRCodeCreateRequestBody);
+                    return await _eWalletsService.GetQRCodeCreateAsync(qRCodeCreateRequestHeader, qRCodeCreateRequestBody);
                 }
             }
         }
