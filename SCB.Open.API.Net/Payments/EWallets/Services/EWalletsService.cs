@@ -60,5 +60,49 @@ namespace SCB.Open.API.Net.Payments.EWallets.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public InquireResponseData GetInquire(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Inquire(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", inquireRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", inquireRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", inquireRequestHeader.RequestUId);
+            request.AddHeader("authorization", inquireRequestHeader.Authorization);
+            request.AddHeader("accept-language", inquireRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(inquireRequestBody));
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<InquireResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<InquireResponseData> GetInquireAsync(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Inquire(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", inquireRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", inquireRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", inquireRequestHeader.RequestUId);
+            request.AddHeader("authorization", inquireRequestHeader.Authorization);
+            request.AddHeader("accept-language", inquireRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(inquireRequestBody));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<InquireResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }

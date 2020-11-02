@@ -235,6 +235,14 @@ namespace SCB.Open.API.Net
                 /// </summary>
                 public QRCodeCreateRequestBody CreateQRCodeCreateRequestBody = new QRCodeCreateRequestBody();
                 /// <summary>
+                /// Create your request header inquire.
+                /// </summary>
+                public InquireRequestHeader CreateInquireRequestHeader = new InquireRequestHeader();
+                /// <summary>
+                /// Create your request body inquire.
+                /// </summary>
+                public InquireRequestBody CreateInquireRequestBody = new InquireRequestBody();
+                /// <summary>
                 /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
                 /// Generate Alipay QR code, Generate WeChatPay QR code
                 /// </summary>
@@ -255,6 +263,26 @@ namespace SCB.Open.API.Net
                 public async Task<QRCodeCreateResponseData> GetQRCodeCreateAsync(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody)
                 {
                     return await _eWalletsService.GetQRCodeCreateAsync(qRCodeCreateRequestHeader, qRCodeCreateRequestBody);
+                }
+                /// <summary>
+                /// This endpoint supports the inquiry of a transaction made either in Alipay or WeChatPay.
+                /// </summary>
+                /// <param name="inquireRequestHeader">Request Header</param>
+                /// <param name="inquireRequestBody">Request Body</param>
+                /// <returns>The inquiry of a transaction made either in Alipay or WeChatPay.</returns>
+                public InquireResponseData GetInquire(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody)
+                {
+                    return _eWalletsService.GetInquire(inquireRequestHeader, inquireRequestBody);
+                }
+                /// <summary>
+                /// This endpoint supports the inquiry of a transaction made either in Alipay or WeChatPay.
+                /// </summary>
+                /// <param name="inquireRequestHeader">Request Header</param>
+                /// <param name="inquireRequestBody">Request Body</param>
+                /// <returns>The inquiry of a transaction made either in Alipay or WeChatPay.</returns>
+                public async Task<InquireResponseData> GetInquireAsync(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody)
+                {
+                    return await _eWalletsService.GetInquireAsync(inquireRequestHeader, inquireRequestBody);
                 }
             }
         }

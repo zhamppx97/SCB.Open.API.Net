@@ -5,6 +5,7 @@ namespace SCB.Open.API.Net.Payments.EWallets.Models
     {
         public InquireStatus status { get; set; }
         public InquireData data { get; set; }
+        public object jsonString { get; set; }
     }
 
     public class InquireStatus
