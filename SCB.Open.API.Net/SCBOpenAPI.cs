@@ -243,6 +243,14 @@ namespace SCB.Open.API.Net
                 /// </summary>
                 public InquireRequestBody CreateInquireRequestBody = new InquireRequestBody();
                 /// <summary>
+                /// Create your request header cancel.
+                /// </summary>
+                public CancelRequestHeader CreateCancelRequestHeader = new CancelRequestHeader();
+                /// <summary>
+                /// Create your request body cancel.
+                /// </summary>
+                public CancelRequestBody CreateCancelRequestBody = new CancelRequestBody();
+                /// <summary>
                 /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
                 /// Generate Alipay QR code, Generate WeChatPay QR code
                 /// </summary>
@@ -283,6 +291,26 @@ namespace SCB.Open.API.Net
                 public async Task<InquireResponseData> GetInquireAsync(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody)
                 {
                     return await _eWalletsService.GetInquireAsync(inquireRequestHeader, inquireRequestBody);
+                }
+                /// <summary>
+                /// This endpoint supports the cancellation of a transaction created in Alipay (C Scan B and B Scan C) and WeChatPay (B Scan C).
+                /// </summary>
+                /// <param name="cancelRequestHeader">Request Header</param>
+                /// <param name="cancelRequestBody">Request Body</param>
+                /// <returns>Cancellation of a transaction created in Alipay (C Scan B and B Scan C) and WeChatPay (B Scan C)</returns>
+                public CancelResponseData GetCancel(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody)
+                {
+                    return _eWalletsService.GetCancel(cancelRequestHeader, cancelRequestBody);
+                }
+                /// <summary>
+                /// This endpoint supports the cancellation of a transaction created in Alipay (C Scan B and B Scan C) and WeChatPay (B Scan C).
+                /// </summary>
+                /// <param name="cancelRequestHeader">Request Header</param>
+                /// <param name="cancelRequestBody">Request Body</param>
+                /// <returns>Cancellation of a transaction created in Alipay (C Scan B and B Scan C) and WeChatPay (B Scan C)</returns>
+                public async Task<CancelResponseData> GetCancelAsync(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody)
+                {
+                    return await _eWalletsService.GetCancelAsync(cancelRequestHeader, cancelRequestBody);
                 }
             }
         }

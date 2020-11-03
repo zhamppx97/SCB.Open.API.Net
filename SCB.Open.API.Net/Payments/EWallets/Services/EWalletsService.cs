@@ -104,5 +104,49 @@ namespace SCB.Open.API.Net.Payments.EWallets.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public CancelResponseData GetCancel(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Cancel(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", cancelRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", cancelRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", cancelRequestHeader.RequestUId);
+            request.AddHeader("authorization", cancelRequestHeader.Authorization);
+            request.AddHeader("accept-language", cancelRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(cancelRequestBody));
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<CancelResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<CancelResponseData> GetCancelAsync(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Cancel(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", cancelRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", cancelRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", cancelRequestHeader.RequestUId);
+            request.AddHeader("authorization", cancelRequestHeader.Authorization);
+            request.AddHeader("accept-language", cancelRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(cancelRequestBody));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<CancelResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }
