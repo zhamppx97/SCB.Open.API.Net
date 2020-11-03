@@ -251,6 +251,16 @@ namespace SCB.Open.API.Net
                 /// </summary>
                 public CancelRequestBody CreateCancelRequestBody = new CancelRequestBody();
                 /// <summary>
+                /// Not Support Alipay
+                /// Create your request header refund.
+                /// </summary>
+                public RefundRequestHeader CreateRefundRequestHeader = new RefundRequestHeader();
+                /// <summary>
+                /// Not Support Alipay
+                /// Create your request body refund.
+                /// </summary>
+                public RefundRequestBody CreateRefundRequestBody = new RefundRequestBody();
+                /// <summary>
                 /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
                 /// Generate Alipay QR code, Generate WeChatPay QR code
                 /// </summary>
@@ -311,6 +321,28 @@ namespace SCB.Open.API.Net
                 public async Task<CancelResponseData> GetCancelAsync(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody)
                 {
                     return await _eWalletsService.GetCancelAsync(cancelRequestHeader, cancelRequestBody);
+                }
+                /// <summary>
+                /// Not Support Alipay
+                /// This endpoint supports the cancellation of a transaction created in WeChatPay (C Scan B).
+                /// </summary>
+                /// <param name="refundRequestHeader">Request Header</param>
+                /// <param name="refundRequestBody">Request Body</param>
+                /// <returns>The cancellation of a transaction created in WeChatPay (C Scan B).</returns>
+                public RefundResponseData GetRefund(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody)
+                {
+                    return _eWalletsService.GetRefund(refundRequestHeader, refundRequestBody);
+                }
+                /// <summary>
+                /// Not Support Alipay
+                /// This endpoint supports the cancellation of a transaction created in WeChatPay (C Scan B).
+                /// </summary>
+                /// <param name="refundRequestHeader">Request Header</param>
+                /// <param name="refundRequestBody">Request Body</param>
+                /// <returns>The cancellation of a transaction created in WeChatPay (C Scan B).</returns>
+                public async Task<RefundResponseData> GetRefundAsync(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody)
+                {
+                    return await _eWalletsService.GetRefundAsync(refundRequestHeader, refundRequestBody);
                 }
             }
         }

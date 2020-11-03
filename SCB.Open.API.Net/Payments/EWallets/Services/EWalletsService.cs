@@ -148,5 +148,49 @@ namespace SCB.Open.API.Net.Payments.EWallets.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public RefundResponseData GetRefund(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Refund(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", refundRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", refundRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", refundRequestHeader.RequestUId);
+            request.AddHeader("authorization", refundRequestHeader.Authorization);
+            request.AddHeader("accept-language", refundRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(refundRequestBody));
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<RefundResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<RefundResponseData> GetRefundAsync(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Refund(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", refundRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", refundRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", refundRequestHeader.RequestUId);
+            request.AddHeader("authorization", refundRequestHeader.Authorization);
+            request.AddHeader("accept-language", refundRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(refundRequestBody));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<RefundResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }
