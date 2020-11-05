@@ -236,5 +236,49 @@ namespace SCB.Open.API.Net.Payments.EWallets.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public PayResponseData GetPay(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Pay(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", payRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", payRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", payRequestHeader.RequestUId);
+            request.AddHeader("authorization", payRequestHeader.Authorization);
+            request.AddHeader("accept-language", payRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(payRequestBody));
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<PayResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<PayResponseData> GetPayAsync(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.Pay(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", payRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", payRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", payRequestHeader.RequestUId);
+            request.AddHeader("authorization", payRequestHeader.Authorization);
+            request.AddHeader("accept-language", payRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(payRequestBody));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<PayResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }

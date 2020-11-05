@@ -271,6 +271,14 @@ namespace SCB.Open.API.Net
                 /// </summary>
                 public QRCodeCancelRequestBody CreateQRCodeCancelRequestBody = new QRCodeCancelRequestBody();
                 /// <summary>
+                /// Create your request header pay.
+                /// </summary>
+                public PayRequestHeader CreatePayRequestHeader = new PayRequestHeader();
+                /// <summary>
+                /// Create your request body pay.
+                /// </summary>
+                public PayRequestBody CreatePayRequestBody = new PayRequestBody();
+                /// <summary>
                 /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
                 /// Generate Alipay QR code, Generate WeChatPay QR code
                 /// </summary>
@@ -375,6 +383,26 @@ namespace SCB.Open.API.Net
                 public async Task<QRCodeCancelResponseData> GetQRCodeCancelAsync(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody)
                 {
                     return await _eWalletsService.GetQRCodeCancelAsync(qRCodeCancelRequestHeader, qRCodeCancelRequestBody);
+                }
+                /// <summary>
+                /// This endpoint supports QR code generation from the merchant end of Alipay and WeChatPay for consumers to scan and pay (B scan C).
+                /// </summary>
+                /// <param name="payRequestHeader">Request Header</param>
+                /// <param name="payRequestBody">Request Body</param>
+                /// <returns>The merchant end of Alipay and WeChatPay for consumers to scan and pay (B scan C)</returns>
+                public PayResponseData GetPay(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody)
+                {
+                    return _eWalletsService.GetPay(payRequestHeader, payRequestBody);
+                }
+                /// <summary>
+                /// This endpoint supports QR code generation from the merchant end of Alipay and WeChatPay for consumers to scan and pay (B scan C).
+                /// </summary>
+                /// <param name="payRequestHeader">Request Header</param>
+                /// <param name="payRequestBody">Request Body</param>
+                /// <returns>The merchant end of Alipay and WeChatPay for consumers to scan and pay (B scan C)</returns>
+                public async Task<PayResponseData> GetPayAsync(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody)
+                {
+                    return await _eWalletsService.GetPayAsync(payRequestHeader, payRequestBody);
                 }
             }
         }
