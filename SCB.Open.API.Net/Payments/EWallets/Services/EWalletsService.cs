@@ -192,5 +192,49 @@ namespace SCB.Open.API.Net.Payments.EWallets.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public QRCodeCancelResponseData GetQRCodeCancel(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.QRCodeCancel(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", qRCodeCancelRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", qRCodeCancelRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", qRCodeCancelRequestHeader.RequestUId);
+            request.AddHeader("authorization", qRCodeCancelRequestHeader.Authorization);
+            request.AddHeader("accept-language", qRCodeCancelRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(qRCodeCancelRequestBody));
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<QRCodeCancelResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<QRCodeCancelResponseData> GetQRCodeCancelAsync(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody)
+        {
+            var client = new RestClient(OpenAPI.Payments.EWallets.QRCodeCancel(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", qRCodeCancelRequestHeader.ContentType);
+            request.AddHeader("resourceOwnerId", qRCodeCancelRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", qRCodeCancelRequestHeader.RequestUId);
+            request.AddHeader("authorization", qRCodeCancelRequestHeader.Authorization);
+            request.AddHeader("accept-language", qRCodeCancelRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(qRCodeCancelRequestBody));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<QRCodeCancelResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }

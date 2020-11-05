@@ -261,6 +261,16 @@ namespace SCB.Open.API.Net
                 /// </summary>
                 public RefundRequestBody CreateRefundRequestBody = new RefundRequestBody();
                 /// <summary>
+                /// Not Support Alipay
+                /// Create your request header qr code cancel.
+                /// </summary>
+                public QRCodeCancelRequestHeader CreateQRCodeCancelRequestHeader = new QRCodeCancelRequestHeader();
+                /// <summary>
+                /// Not Support Alipay
+                /// Create your request body qr code cancel.
+                /// </summary>
+                public QRCodeCancelRequestBody CreateQRCodeCancelRequestBody = new QRCodeCancelRequestBody();
+                /// <summary>
                 /// This endpoint supports the QR code generation of Alipay and WeChatPay. There are 2 use cases.
                 /// Generate Alipay QR code, Generate WeChatPay QR code
                 /// </summary>
@@ -343,6 +353,28 @@ namespace SCB.Open.API.Net
                 public async Task<RefundResponseData> GetRefundAsync(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody)
                 {
                     return await _eWalletsService.GetRefundAsync(refundRequestHeader, refundRequestBody);
+                }
+                /// <summary>
+                /// Not Support Alipay
+                /// This endpoint supports the cancellation of a QR transaction created in WeChat. This API is used when a merchant wants to cancel the QR before it is paid. If the QR is paid, use Refund API to reverse the payment.
+                /// </summary>
+                /// <param name="qRCodeCancelRequestHeader">Request Header</param>
+                /// <param name="qRCodeCancelRequestBody">Request Body</param>
+                /// <returns>The cancellation of a QR transaction created in WeChat</returns>
+                public QRCodeCancelResponseData GetQRCodeCancel(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody)
+                {
+                    return _eWalletsService.GetQRCodeCancel(qRCodeCancelRequestHeader, qRCodeCancelRequestBody);
+                }
+                /// <summary>
+                /// Not Support Alipay
+                /// This endpoint supports the cancellation of a QR transaction created in WeChat. This API is used when a merchant wants to cancel the QR before it is paid. If the QR is paid, use Refund API to reverse the payment.
+                /// </summary>
+                /// <param name="qRCodeCancelRequestHeader">Request Header</param>
+                /// <param name="qRCodeCancelRequestBody">Request Body</param>
+                /// <returns>The cancellation of a QR transaction created in WeChat</returns>
+                public async Task<QRCodeCancelResponseData> GetQRCodeCancelAsync(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody)
+                {
+                    return await _eWalletsService.GetQRCodeCancelAsync(qRCodeCancelRequestHeader, qRCodeCancelRequestBody);
                 }
             }
         }

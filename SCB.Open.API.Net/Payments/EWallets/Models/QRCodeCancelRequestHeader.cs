@@ -5,7 +5,7 @@ namespace SCB.Open.API.Net.Payments.EWallets.Models
     /// <summary>
     /// Not Support Alipay
     /// </summary>
-    class QRCodeCancelRequestHeader
+    public class QRCodeCancelRequestHeader
     {
         /// <summary>
         /// Required:
