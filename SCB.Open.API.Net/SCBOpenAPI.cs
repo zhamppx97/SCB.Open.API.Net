@@ -2,6 +2,8 @@
 using SCB.Open.API.Net.Authentication.Services;
 using SCB.Open.API.Net.Customer.Information.Models;
 using SCB.Open.API.Net.Customer.Information.Services;
+using SCB.Open.API.Net.LoanOrigination.Models;
+using SCB.Open.API.Net.LoanOrigination.Services;
 using SCB.Open.API.Net.Payments.BScanC.Models;
 using SCB.Open.API.Net.Payments.BScanC.Services;
 using SCB.Open.API.Net.Payments.EWallets.Models;
@@ -433,6 +435,41 @@ namespace SCB.Open.API.Net
             public async Task<CustomerInfoResponseData> GetProfileAsync(CustomerInfoRequestHeader customerInfoRequestHeader)
             {
                 return await _customerInfoService.GetProfileAsync(customerInfoRequestHeader);
+            }
+        }
+        #endregion
+
+        #region Loan Origination
+        public class LoanOrigination
+        {
+            private readonly ILoanOriginationService _loanOriginationService = new LoanOriginationService();
+            /// <summary>
+            /// Create your request header simulator calculate.
+            /// </summary>
+            public SimulatorCalRequestHeader CreateSimulatorCalRequestHeader = new SimulatorCalRequestHeader();
+            /// <summary>
+            /// Create your request body simulator calculate.
+            /// </summary>
+            public SimulatorCalRequestBody CreateSimulatorCalRequestBody = new SimulatorCalRequestBody();
+            /// <summary>
+            /// This endpoint calculates for loan installment amount or loan tenor from given loan amount, repayment frequency and repayment start date.
+            /// </summary>
+            /// <param name="simulatorCalRequestHeader">Request Header</param>
+            /// <param name="simulatorCalRequestBody">Request Body</param>
+            /// <returns>Calculates for loan installment amount or loan tenor from given loan amount, repayment frequency and repayment start date</returns>
+            public SimulatorCalResponseData GetSimulatorCal(SimulatorCalRequestHeader simulatorCalRequestHeader, SimulatorCalRequestBody simulatorCalRequestBody)
+            {
+                return _loanOriginationService.GetSimulatorCal(simulatorCalRequestHeader, simulatorCalRequestBody);
+            }
+            /// <summary>
+            /// This endpoint calculates for loan installment amount or loan tenor from given loan amount, repayment frequency and repayment start date.
+            /// </summary>
+            /// <param name="simulatorCalRequestHeader">Request Header</param>
+            /// <param name="simulatorCalRequestBody">Request Body</param>
+            /// <returns>Calculates for loan installment amount or loan tenor from given loan amount, repayment frequency and repayment start date</returns>
+            public async Task<SimulatorCalResponseData> GetSimulatorCalAsync(SimulatorCalRequestHeader simulatorCalRequestHeader, SimulatorCalRequestBody simulatorCalRequestBody)
+            {
+                return await _loanOriginationService.GetSimulatorCalAsync(simulatorCalRequestHeader, simulatorCalRequestBody);
             }
         }
         #endregion
