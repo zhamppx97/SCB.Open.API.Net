@@ -24,7 +24,7 @@ https://developer.scb/#/home</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Loan.Origination\" />
+    <Folder Include="LoanOrigination\Services\" />
     <Folder Include="Slip.Verification\" />
     <Folder Include="SCB.Payment.Gateway\" />
   </ItemGroup>
