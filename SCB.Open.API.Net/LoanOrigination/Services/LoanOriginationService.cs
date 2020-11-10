@@ -60,5 +60,49 @@ namespace SCB.Open.API.Net.LoanOrigination.Services
             results.jsonString = responseJsonString;
             return results;
         }
+
+        public InitiateApplicationsResponseData GetInitiateApplications(InitiateApplicationsRequestHeader initiateApplicationsRequestHeader, InitiateApplicationsRequestBody initiateApplicationsRequestBody)
+        {
+            var client = new RestClient(OpenAPI.LoanOrigination.InitiateApplications(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", initiateApplicationsRequestHeader.AcceptLanguage);
+            request.AddHeader("resourceOwnerId", initiateApplicationsRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", initiateApplicationsRequestHeader.RequestUId);
+            request.AddHeader("authorization", initiateApplicationsRequestHeader.Authorization);
+            request.AddHeader("accept-language", initiateApplicationsRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(initiateApplicationsRequestBody));
+
+            IRestResponse response = client.Execute(request);
+            var responseContent = JsonConvert.DeserializeObject<InitiateApplicationsResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
+
+        public async Task<InitiateApplicationsResponseData> GetInitiateApplicationsAsync(InitiateApplicationsRequestHeader initiateApplicationsRequestHeader, InitiateApplicationsRequestBody initiateApplicationsRequestBody)
+        {
+            var client = new RestClient(OpenAPI.LoanOrigination.InitiateApplications(_remoteServiceBaseUrl))
+            {
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", initiateApplicationsRequestHeader.AcceptLanguage);
+            request.AddHeader("resourceOwnerId", initiateApplicationsRequestHeader.ResourceOwnerId);
+            request.AddHeader("requestUId", initiateApplicationsRequestHeader.RequestUId);
+            request.AddHeader("authorization", initiateApplicationsRequestHeader.Authorization);
+            request.AddHeader("accept-language", initiateApplicationsRequestHeader.AcceptLanguage);
+            request.AddJsonBody(JsonConvert.SerializeObject(initiateApplicationsRequestBody));
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            var responseContent = JsonConvert.DeserializeObject<InitiateApplicationsResponseData>(response.Content);
+            var responseJsonString = JsonConvert.DeserializeObject(response.Content);
+            var results = responseContent;
+            results.jsonString = responseJsonString;
+            return results;
+        }
     }
 }

@@ -452,6 +452,14 @@ namespace SCB.Open.API.Net
             /// </summary>
             public SimulatorCalRequestBody CreateSimulatorCalRequestBody = new SimulatorCalRequestBody();
             /// <summary>
+            /// Create your request header initiate applications.
+            /// </summary>
+            public InitiateApplicationsRequestHeader CreateInitiateApplicationsRequestHeader = new InitiateApplicationsRequestHeader();
+            /// <summary>
+            /// Create your request body initiate applications.
+            /// </summary>
+            public InitiateApplicationsRequestBody CreateInitiateApplicationsRequestBody = new InitiateApplicationsRequestBody();
+            /// <summary>
             /// This endpoint calculates for loan installment amount or loan tenor from given loan amount, repayment frequency and repayment start date.
             /// </summary>
             /// <param name="simulatorCalRequestHeader">Request Header</param>
@@ -470,6 +478,26 @@ namespace SCB.Open.API.Net
             public async Task<SimulatorCalResponseData> GetSimulatorCalAsync(SimulatorCalRequestHeader simulatorCalRequestHeader, SimulatorCalRequestBody simulatorCalRequestBody)
             {
                 return await _loanOriginationService.GetSimulatorCalAsync(simulatorCalRequestHeader, simulatorCalRequestBody);
+            }
+            /// <summary>
+            /// This endpoint requests loan application initiate.
+            /// </summary>
+            /// <param name="initiateApplicationsRequestHeader">Request Header</param>
+            /// <param name="initiateApplicationsRequestBody">Request Body</param>
+            /// <returns>Loan application initiate</returns>
+            public InitiateApplicationsResponseData GetInitiateApplications(InitiateApplicationsRequestHeader initiateApplicationsRequestHeader, InitiateApplicationsRequestBody initiateApplicationsRequestBody)
+            {
+                return _loanOriginationService.GetInitiateApplications(initiateApplicationsRequestHeader, initiateApplicationsRequestBody);
+            }
+            /// <summary>
+            /// This endpoint requests loan application initiate.
+            /// </summary>
+            /// <param name="initiateApplicationsRequestHeader">Request Header</param>
+            /// <param name="initiateApplicationsRequestBody">Request Body</param>
+            /// <returns>Loan application initiate</returns>
+            public async Task<InitiateApplicationsResponseData> GetInitiateApplicationsAsync(InitiateApplicationsRequestHeader initiateApplicationsRequestHeader, InitiateApplicationsRequestBody initiateApplicationsRequestBody)
+            {
+                return await _loanOriginationService.GetInitiateApplicationsAsync(initiateApplicationsRequestHeader, initiateApplicationsRequestBody);
             }
         }
         #endregion
