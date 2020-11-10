@@ -460,6 +460,10 @@ namespace SCB.Open.API.Net
             /// </summary>
             public InitiateApplicationsRequestBody CreateInitiateApplicationsRequestBody = new InitiateApplicationsRequestBody();
             /// <summary>
+            /// Create your request header single application.
+            /// </summary>
+            public SingleApplicationsRequestHeader CreateSingleApplicationsRequestHeader = new SingleApplicationsRequestHeader();
+            /// <summary>
             /// This endpoint calculates for loan installment amount or loan tenor from given loan amount, repayment frequency and repayment start date.
             /// </summary>
             /// <param name="simulatorCalRequestHeader">Request Header</param>
@@ -498,6 +502,26 @@ namespace SCB.Open.API.Net
             public async Task<InitiateApplicationsResponseData> GetInitiateApplicationsAsync(InitiateApplicationsRequestHeader initiateApplicationsRequestHeader, InitiateApplicationsRequestBody initiateApplicationsRequestBody)
             {
                 return await _loanOriginationService.GetInitiateApplicationsAsync(initiateApplicationsRequestHeader, initiateApplicationsRequestBody);
+            }
+            /// <summary>
+            /// This endpoint retrieves a single loan application information.
+            /// </summary>
+            /// <param name="singleApplicationsRequestHeader">Request Header</param>
+            /// <param name="applicationId">Application ID</param>
+            /// <returns>A single loan application information</returns>
+            public SingleApplicationsResponseData GetSingleApplications(SingleApplicationsRequestHeader singleApplicationsRequestHeader, string applicationId)
+            {
+                return _loanOriginationService.GetSingleApplications(singleApplicationsRequestHeader, applicationId);
+            }
+            /// <summary>
+            /// This endpoint retrieves a single loan application information.
+            /// </summary>
+            /// <param name="singleApplicationsRequestHeader">Request Header</param>
+            /// <param name="applicationId">Application ID</param>
+            /// <returns>A single loan application information</returns>
+            public async Task<SingleApplicationsResponseData> GetSingleApplicationsAsync(SingleApplicationsRequestHeader singleApplicationsRequestHeader, string applicationId)
+            {
+                return await _loanOriginationService.GetSingleApplicationsAsync(singleApplicationsRequestHeader, applicationId);
             }
         }
         #endregion
