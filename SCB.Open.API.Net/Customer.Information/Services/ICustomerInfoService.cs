@@ -5,8 +5,7 @@ namespace SCB.Open.API.Net.Customer.Information.Services
 {
     public interface ICustomerInfoService
     {
-        public CustomerInfoResponseData GetProfile(CustomerInfoRequestHeader customerInfoRequestHeader);
-
-        public Task<CustomerInfoResponseData> GetProfileAsync(CustomerInfoRequestHeader customerInfoRequestHeader);
+        CustomerInfoResponseData GetProfile(CustomerInfoRequestHeader customerInfoRequestHeader);
+        Task<CustomerInfoResponseData> GetProfileAsync(CustomerInfoRequestHeader customerInfoRequestHeader);
     }
 }

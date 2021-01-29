@@ -5,17 +5,17 @@ namespace SCB.Open.API.Net.Payments.EWallets.Services
 {
     public interface IEWalletsService
     {
-        public QRCodeCreateResponseData GetQRCodeCreate(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody);
-        public Task<QRCodeCreateResponseData> GetQRCodeCreateAsync(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody);
-        public InquireResponseData GetInquire(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody);
-        public Task<InquireResponseData> GetInquireAsync(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody);
-        public CancelResponseData GetCancel(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody);
-        public Task<CancelResponseData> GetCancelAsync(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody);
-        public RefundResponseData GetRefund(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody);
-        public Task<RefundResponseData> GetRefundAsync(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody);
-        public QRCodeCancelResponseData GetQRCodeCancel(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody);
-        public Task<QRCodeCancelResponseData> GetQRCodeCancelAsync(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody);
-        public PayResponseData GetPay(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody);
-        public Task<PayResponseData> GetPayAsync(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody);
+        QRCodeCreateResponseData GetQRCodeCreate(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody);
+        Task<QRCodeCreateResponseData> GetQRCodeCreateAsync(QRCodeCreateRequestHeader qRCodeCreateRequestHeader, QRCodeCreateRequestBody qRCodeCreateRequestBody);
+        InquireResponseData GetInquire(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody);
+        Task<InquireResponseData> GetInquireAsync(InquireRequestHeader inquireRequestHeader, InquireRequestBody inquireRequestBody);
+        CancelResponseData GetCancel(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody);
+        Task<CancelResponseData> GetCancelAsync(CancelRequestHeader cancelRequestHeader, CancelRequestBody cancelRequestBody);
+        RefundResponseData GetRefund(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody);
+        Task<RefundResponseData> GetRefundAsync(RefundRequestHeader refundRequestHeader, RefundRequestBody refundRequestBody);
+        QRCodeCancelResponseData GetQRCodeCancel(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody);
+        Task<QRCodeCancelResponseData> GetQRCodeCancelAsync(QRCodeCancelRequestHeader qRCodeCancelRequestHeader, QRCodeCancelRequestBody qRCodeCancelRequestBody);
+        PayResponseData GetPay(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody);
+        Task<PayResponseData> GetPayAsync(PayRequestHeader payRequestHeader, PayRequestBody payRequestBody);
     }
 }
